@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Shuffle</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1f1f1;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            animation: fadeIn 1s ease-out;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 900px;
+            animation: slideUp 0.5s ease-out;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 20px;
+            border: none;
+            background: #ffc900;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        button:hover {
+            background: #ffc900;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            animation: fadeInTable 1s ease-out;
+        }
+        td {
+            padding: 12px;
+            text-align: center;
+            background: #f9f9f9;
+            font-size: 18px;
+        }
+        td .vs {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffc900;
+        }
+        #loading {
+            display: none;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+        }
+        .navodayya {
+            max-width: 120px;
+        }
+        .saviruayya {
+            max-width: 50px;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes slideUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes fadeInTable {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .match-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .team {
+            font-size: 20px;
+            font-weight: bold;
+        }
+                .vs{
+            color: #ffc900;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="navodayya" src="https://raw.githubusercontent.com/NethinduSL/FLW/refs/heads/main/logo.png" alt="Logo">
+        <button onclick="showNextSchoolList()"><i class="fa-solid fa-shuffle"></i> Shuffle Teams</button>
+        <div id="loading"><img class="saviruayya" src="https://hris-bd.rescue.org/assets/loading/spinner.gif" alt=""></img></div>
+        <h3>Legues 2</h3>
+        <div id="teamsDisplay"></div>
+    </div>
+
+    <!-- Include the external data.js file -->
+    <script src="data.js"></script>
+
+    <script>
+        let currentListIndex = 2; // Track the current list index
+        const lists = [list1, list2, list3, list4, list5, list6, list7]; // Lists from data.js
+
+        function showNextSchoolList() {
+            const teamsDisplay = document.getElementById("teamsDisplay");
+            const loading = document.getElementById("loading");
+            
+            loading.style.display = "block";
+            teamsDisplay.innerHTML = "";
+            
+            setTimeout(() => {
+                loading.style.display = "none";
+                let html = `<table>`;
+                lists[currentListIndex].forEach(match => { // Use the current list
+                    html += `
+                    <tr>
+                        <td>
+                            <div class="match-row">
+                                <div class="team">${match[0]}</div>
+                            </div>
+                        </td>
+                        <td class="vs">
+                            VS
+                        </td>
+                        <td>
+                            <div class="match-row">
+                                <div class="team">${match[1]}</div>
+                            </div>
+                        </td>
+                    </tr>`;
+                });
+                html += `</table>`;
+                teamsDisplay.innerHTML = html;
+
+                // Increment the list index for the next click
+                currentListIndex = (currentListIndex + 1) % lists.length;
+            }, 1000);
+        }
+
+        // Show the first school list on page load
+        
+    </script>
+</body>
+</html>
