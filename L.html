@@ -132,14 +132,14 @@
                 // Add first team
                 const cell1 = document.createElement("td");
                 cell1.textContent = team1[0];
-                if (i < 9 && team1[1] > 0) { // First 8 teams with marks > 0
+                if (i < 8 && team1[1] > 0) { // First 8 teams with marks > 0
                     cell1.classList.add("highlight");
                 }
                 row.appendChild(cell1);
 
                 const cell2 = document.createElement("td");
                 cell2.textContent = team1[1];
-                if (i < 9 && team1[1] > 0) {
+                if (i < 8 && team1[1] > 0) {
                     cell2.classList.add("highlight");
                 }
                 row.appendChild(cell2);
