@@ -77,7 +77,7 @@
             max-width: 120px;
         }
         .saviruayya {
-            max-width: 400px;
+            max-width: 50px;
         }
         /* Animations */
         @keyframes fadeIn {
@@ -116,7 +116,7 @@
             font-size: 20px;
             font-weight: bold;
         }
-        .vs {
+                .vs{
             color: #ffc900;
             font-weight: bold;
         }
@@ -125,9 +125,9 @@
 <body>
     <div class="container">
         <img class="navodayya" src="https://raw.githubusercontent.com/NethinduSL/FLW/refs/heads/main/logo.png" alt="Logo">
-        <button onclick="showNextSchoolList()"><i class="fa-solid fa-shuffle"></i> Shuffle Teams</button>
+        <button onclick="showNextSchoolList()"><i class="fa-solid fa-eye"></i> Show Teams</button>
         <div id="loading"><img class="saviruayya" src="https://hris-bd.rescue.org/assets/loading/spinner.gif" alt=""></img></div>
-        <h3>Legues</h3>
+        <h3>Legues 2</h3>
         <div id="teamsDisplay"></div>
     </div>
 
@@ -171,10 +171,11 @@
 
                 // Increment the list index for the next click
                 currentListIndex = (currentListIndex) % lists.length;
-            }, 15000); // 30000 milliseconds = 30 seconds
+            }, 1000);
         }
 
         // Show the first school list on page load
+        
     </script>
 </body>
 </html>
