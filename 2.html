@@ -116,7 +116,7 @@
             font-size: 20px;
             font-weight: bold;
         }
-                .vs{
+        .vs {
             color: #ffc900;
             font-weight: bold;
         }
@@ -127,7 +127,7 @@
         <img class="navodayya" src="https://raw.githubusercontent.com/NethinduSL/FLW/refs/heads/main/logo.png" alt="Logo">
         <button onclick="showNextSchoolList()"><i class="fa-solid fa-shuffle"></i> Shuffle Teams</button>
         <div id="loading"><img class="saviruayya" src="https://hris-bd.rescue.org/assets/loading/spinner.gif" alt=""></img></div>
-        <h3>Legues hdhd2</h3>
+        <h3>Legues</h3>
         <div id="teamsDisplay"></div>
     </div>
 
@@ -171,11 +171,10 @@
 
                 // Increment the list index for the next click
                 currentListIndex = (currentListIndex + 1) % lists.length;
-            }, 1000);
+            }, 15000); // 30000 milliseconds = 30 seconds
         }
 
         // Show the first school list on page load
-        
     </script>
 </body>
 </html>
