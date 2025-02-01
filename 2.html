@@ -135,6 +135,7 @@
     <script src="data.js"></script>
 
     <script>
+        //ඉවරයි
         let currentListIndex = 2; // Track the current list index
         const lists = [list1, list2, list3, list4, list5, list6, list7]; // Lists from data.js
 
@@ -170,7 +171,7 @@
                 teamsDisplay.innerHTML = html;
 
                 // Increment the list index for the next click
-                currentListIndex = (currentListIndex+1) % lists.length;
+                currentListIndex = (currentListIndex) % lists.length;
             }, 1000);
         }
 
