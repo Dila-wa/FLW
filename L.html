@@ -24,7 +24,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             width: 80%;
-            max-width: 600px;
+            max-width: 800px; /* Increased width to accommodate two teams per row */
         }
         table {
             width: 100%;
@@ -34,14 +34,13 @@
         th, td {
             padding: 10px;
             text-align: center;
-            border: 1px solid #ddd;
         }
         th {
             background-color: #FF8C00;
             color: white;
         }
         .highlight {
-            color: #FF8C00;
+            color: #FF8C00; /* Color for the first 8 teams with marks > 0 */
             font-weight: bold;
         }
     </style>
@@ -52,7 +51,8 @@
         <table>
             <thead>
                 <tr>
-                    <th>Rank</th>
+                    <th>Team</th>
+                    <th>Marks</th>
                     <th>Team</th>
                     <th>Marks</th>
                 </tr>
@@ -65,29 +65,58 @@
 
     <script>
         const hi = {
-            "නාලන්ද විද්‍යාලය": 16,
-            "රිච්මන්ඩ් විද්‍යාලය ගාල්ල": 10,
-            "පානදුර සුමංගල විද්‍යාලය": 15.5,
-            "ලුම්බිණි විද්‍යාලය": 17.5,
-            "මිද්දෙණිය මහා විද්‍යාලය": 0,
-            "ධර්මරාජ විද්‍යාලය": 4.5,
-            "රාජකීය විද්‍යාලය": 22.5,
-            "මලියදේව විද්‍යාලය": 15,
-            "විද්‍යාලෝක විද්‍යාලය": 2.5,
-            "කැළණිය ශ්‍රි ධර්මාලෝක විද්‍යාලය": 8,
+            "නාලන්ද විද්‍යාලය": 11.5,//
+
+            
+          //  "සවුත්ලන්ඩ් විද්‍යාලය": 0,//
+           // "අනුලාදේවි බාලිකා විද්‍යාලය": 9.5,//
+        
+            "රිච්මන්ඩ් විද්‍යාලය ගාල්ල": 8,//
+            "පානදුර සුමංගල විද්‍යාලය": 11,//
+
+
+            "ලුම්බිණි විද්‍යාලය": 15,//
+            "මිද්දෙණිය මහා විද්‍යාලය": 0,//
+
+
+            "ධර්මරාජ විද්‍යාලය": 4.5,//
+            "රාජකීය විද්‍යාලය": 15,//
+
+
+            "මලියදේව විද්‍යාලය": 7.5,//
+            "විද්‍යාලෝක විද්‍යාලය": 2.5,//
+
+
+            "කැළණිය ශ්‍රි ධර්මාලෝක විද්‍යාලය": 0.5,//
             "ආනන්ද විද්‍යාලය": 22,
-            "ශාන්ත ආනා විද්‍යාලය": 11.5,
-            "ජිනරාජ විද්‍යාලය": 0,
-            "ඇලෝසියස් විද්‍යාලය": 19,
-            "සංඝමිත්ත බාලිකා විද්‍යාලය": 10,
+
+
+            "ශාන්ත ආනා විද්‍යාලය": 11.5,//
+            "ජිනරාජ විද්‍යාලය": 0,//
+
+
+            "ඇලෝසියස් විද්‍යාලය": 15,//
+            "සංඝමිත්ත බාලිකා විද්‍යාලය": 2.5,//
+
+
             "රිපන් බාලිකා විද්‍යාලය": 0.5,
-            "කිංග්ස්වුඩ් විද්‍යාලය": 14,
-            "සිල්වෙස්තර විද්‍යාලය": 15.5,
-            "විද්‍යාර්ත විද්‍යාලය": 11,
+            "කිංග්ස්වුඩ් විද්‍යාලය": 9.5,//
+
+
+            "සිල්වෙස්තර විද්‍යාලය": 8,//
+            "විද්‍යාර්ත විද්‍යාලය": 11,//
+
+
+           // "වලස්මුල්ල ජාතික පාසල": 4.5,//
             "ශ්‍රී හෘදය කන්‍යාරාමය": 4.5,
-            "ගම්පහ බණ්ඩාරනායක විද්‍යාලය": 13.5,
-            "සිරිමාවෝ බණ්ඩාරනායක විද්‍යාලය": 16.5,
-            "ශාන්ත බෙනඩික් විද්‍යාලය": 9.5
+
+
+           // "රාහුල විද්‍යාලය": 4,//
+            "ගම්පහ බණ්ඩාරනායක විද්‍යාලය": 11.5,//
+
+
+            "සිරිමාවෝ බණ්ඩාරනායක විද්‍යාලය": 9,//
+            "ශාන්ත බෙනඩික් විද්‍යාලය": 9.5//
         };
 
         function displayTeams() {
@@ -95,29 +124,46 @@
             const tableBody = document.getElementById("teamTable");
             tableBody.innerHTML = "";
 
-            sortedTeams.forEach((team, index) => {
+            for (let i = 0; i < sortedTeams.length; i += 2) {
+                const team1 = sortedTeams[i];
+                const team2 = sortedTeams[i + 1];
+
                 const row = document.createElement("tr");
 
-                const rankCell = document.createElement("td");
-                rankCell.textContent = index + 1;
-                row.appendChild(rankCell);
-
-                const nameCell = document.createElement("td");
-                nameCell.textContent = team[0];
-                if (index < 8 && team[1] > 0) {
-                    nameCell.classList.add("highlight");
+                // Add first team
+                const cell1 = document.createElement("td");
+                cell1.textContent = team1[0];
+                if (i < 8 && team1[1] > 0) { // First 8 teams with marks > 0
+                    cell1.classList.add("highlight");
                 }
-                row.appendChild(nameCell);
+                row.appendChild(cell1);
 
-                const marksCell = document.createElement("td");
-                marksCell.textContent = team[1];
-                if (index < 8 && team[1] > 0) {
-                    marksCell.classList.add("highlight");
+                const cell2 = document.createElement("td");
+                cell2.textContent = team1[1];
+                if (i < 8 && team1[1] > 0) {
+                    cell2.classList.add("highlight");
                 }
-                row.appendChild(marksCell);
+                row.appendChild(cell2);
+
+                // Add second team if it exists
+                if (team2) {
+                    const cell3 = document.createElement("td");
+                    cell3.textContent = team2[0];
+                    if (i < 8 && team2[1] > 0) {
+                        cell3.classList.add("highlight");
+                    }
+                    row.appendChild(cell3);
+
+                    const cell4 = document.createElement("td");
+                    cell4.textContent = team2[1];
+                    if (i < 8 && team2[1] > 0) {
+                        cell4.classList.add("highlight");
+                    }
+                    row.appendChild(cell4);
+                }
 
                 tableBody.appendChild(row);
-            });
+            }
         }
 
         displayTeams();
